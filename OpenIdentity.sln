@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity.Abstractions", "src\OpenIdentity.Abstractions\OpenIdentity.Abstractions.csproj", "{E03AC372-ECAF-4EB8-9182-6D026FC9E43D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D56DD36F-B95D-4F05-B565-82EA2233E79C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity", "src\OpenIdentity\OpenIdentity.csproj", "{56E755D2-4B6C-4253-AAE6-216C10BFE633}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D541ACB5-C62D-420C-BE31-602E21BB925E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0A26827A-228E-4EB3-AD72-FA7377B162A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{226C5389-085E-4324-B772-266AB0C1810E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{8C634507-645E-4CF7-AAE5-4559A7449028}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity.EntityFramework", "src\OpenIdentity.EntityFramework\OpenIdentity.EntityFramework.csproj", "{E12C8F2E-99D5-4B55-A436-0AA6414B1EA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNet_5_0_Server", "samples\AspNet_5_0_Server\AspNet_5_0_Server.csproj", "{C7890B67-9A92-4A61-BEB9-FE4FF1CAA568}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_3_1_Server", "samples\AspNetCore_3_1_Server\AspNetCore_3_1_Server.csproj", "{60D3BDF3-1FC5-4846-9953-8AC724507BF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity.AspNet", "src\OpenIdentity.AspNet\OpenIdentity.AspNet.csproj", "{45679C9E-D5F6-406B-9D52-07353830EBD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIdentity.AspNetIdentity", "src\OpenIdentity.AspNetIdentity\OpenIdentity.AspNetIdentity.csproj", "{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E03AC372-ECAF-4EB8-9182-6D026FC9E43D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03AC372-ECAF-4EB8-9182-6D026FC9E43D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03AC372-ECAF-4EB8-9182-6D026FC9E43D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E03AC372-ECAF-4EB8-9182-6D026FC9E43D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56E755D2-4B6C-4253-AAE6-216C10BFE633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E755D2-4B6C-4253-AAE6-216C10BFE633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E755D2-4B6C-4253-AAE6-216C10BFE633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56E755D2-4B6C-4253-AAE6-216C10BFE633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12C8F2E-99D5-4B55-A436-0AA6414B1EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E12C8F2E-99D5-4B55-A436-0AA6414B1EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E12C8F2E-99D5-4B55-A436-0AA6414B1EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E12C8F2E-99D5-4B55-A436-0AA6414B1EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7890B67-9A92-4A61-BEB9-FE4FF1CAA568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7890B67-9A92-4A61-BEB9-FE4FF1CAA568}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7890B67-9A92-4A61-BEB9-FE4FF1CAA568}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7890B67-9A92-4A61-BEB9-FE4FF1CAA568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D3BDF3-1FC5-4846-9953-8AC724507BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D3BDF3-1FC5-4846-9953-8AC724507BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D3BDF3-1FC5-4846-9953-8AC724507BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D3BDF3-1FC5-4846-9953-8AC724507BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45679C9E-D5F6-406B-9D52-07353830EBD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45679C9E-D5F6-406B-9D52-07353830EBD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45679C9E-D5F6-406B-9D52-07353830EBD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45679C9E-D5F6-406B-9D52-07353830EBD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E03AC372-ECAF-4EB8-9182-6D026FC9E43D} = {D56DD36F-B95D-4F05-B565-82EA2233E79C}
+		{56E755D2-4B6C-4253-AAE6-216C10BFE633} = {D56DD36F-B95D-4F05-B565-82EA2233E79C}
+		{226C5389-085E-4324-B772-266AB0C1810E} = {0A26827A-228E-4EB3-AD72-FA7377B162A0}
+		{8C634507-645E-4CF7-AAE5-4559A7449028} = {0A26827A-228E-4EB3-AD72-FA7377B162A0}
+		{E12C8F2E-99D5-4B55-A436-0AA6414B1EA7} = {D56DD36F-B95D-4F05-B565-82EA2233E79C}
+		{C7890B67-9A92-4A61-BEB9-FE4FF1CAA568} = {226C5389-085E-4324-B772-266AB0C1810E}
+		{60D3BDF3-1FC5-4846-9953-8AC724507BF2} = {226C5389-085E-4324-B772-266AB0C1810E}
+		{45679C9E-D5F6-406B-9D52-07353830EBD5} = {D56DD36F-B95D-4F05-B565-82EA2233E79C}
+		{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F} = {D56DD36F-B95D-4F05-B565-82EA2233E79C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {960D525E-86FE-4B5A-9144-EA91BCDFF4EB}
+	EndGlobalSection
+EndGlobal
