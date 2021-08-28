@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework></TargetFramework>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;</TargetFrameworks>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework></TargetFramework>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;</TargetFrameworks>
+    </PropertyGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\OpenIdentity.Abstractions\OpenIdentity.Abstractions.csproj" />
-	</ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\OpenIdentity.Abstractions\OpenIdentity.Abstractions.csproj" />
+    </ItemGroup>
 
 </Project>

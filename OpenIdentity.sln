@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity.Abstractions", "src\OpenIdentity.Abstractions\OpenIdentity.Abstractions.csproj", "{E03AC372-ECAF-4EB8-9182-6D026FC9E43D}"
 EndProject
@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity.EntityFramewor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNet_5_0_Server", "samples\AspNet_5_0_Server\AspNet_5_0_Server.csproj", "{C7890B67-9A92-4A61-BEB9-FE4FF1CAA568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_3_1_Server", "samples\AspNetCore_3_1_Server\AspNetCore_3_1_Server.csproj", "{60D3BDF3-1FC5-4846-9953-8AC724507BF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore_3_1_Server", "samples\AspNetCore_3_1_Server\AspNetCore_3_1_Server.csproj", "{60D3BDF3-1FC5-4846-9953-8AC724507BF2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity.AspNet", "src\OpenIdentity.AspNet\OpenIdentity.AspNet.csproj", "{45679C9E-D5F6-406B-9D52-07353830EBD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIdentity.AspNetIdentity", "src\OpenIdentity.AspNetIdentity\OpenIdentity.AspNetIdentity.csproj", "{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdentity.AspNetIdentity", "src\OpenIdentity.AspNetIdentity\OpenIdentity.AspNetIdentity.csproj", "{B1729EBA-7BBD-4CC4-8FAB-ED147F60B82F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{04016F5F-F557-44B9-AE56-97019E2FE181}"
 	ProjectSection(SolutionItems) = preProject
