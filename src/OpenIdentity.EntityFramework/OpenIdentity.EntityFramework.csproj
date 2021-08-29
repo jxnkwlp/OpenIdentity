@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\OpenIdentity.Abstractions\OpenIdentity.Abstractions.csproj" />
+      <ProjectReference Include="..\OpenIdentity\OpenIdentity.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using OpenIdentity.Abstractions.Stores;
@@ -21,11 +22,11 @@ namespace OpenIdentity.Endpoints
 
             if (request.Method != "POST")
             {
-                return new RouteEndpointHandleResponse
-                {
-                    StatusCode = 400,
-                    Json = "{}", // { "error", "invalid_request", "error_message" :"client id not found. ... " }
-                };
+                //return new RouteEndpointHandleResponse
+                //{
+                //    StatusCode = 400,
+                //    Json = "{}", // { "error", "invalid_request", "error_message" :"client id not found. ... " }
+                //};
             }
 
             request.Query.TryGetValue("grant_type", out var grantType);
@@ -46,6 +47,7 @@ namespace OpenIdentity.Endpoints
 
             // response
 
+            throw new NotImplementedException();
         }
     }
 

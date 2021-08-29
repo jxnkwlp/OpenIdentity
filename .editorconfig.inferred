@@ -1,14 +1,10 @@
-root = true
-
-[*]
-charset                  = utf-8
-end_of_line              = crlf
-indent_style             = space
-indent_size              = 4
-insert_final_newline     = true
-trim_trailing_whitespace = true
-
+# Rules in this file were initially inferred by Visual Studio IntelliCode from the F:\Repos\OpenIdentity codebase based on best match to current usage at 2021/8/29
+# There already existed an .editorconfig file in this directory. Copy rules from this .editorconfig.inferred file to the existing .editorconfig file as desired to have them take effect at this location.
+# You can modify the rules from these initially generated values to suit your own policies
+# You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
 [*.cs]
+
+
 #Core editorconfig formatting - indentation
 
 #use soft tabs (spaces) for indentation
@@ -106,4 +102,3 @@ csharp_preferred_modifier_order = public,private,internal,static,readonly:sugges
 dotnet_style_qualification_for_field = false:suggestion
 #prefer properties not to be prefaced with this. or Me. in Visual Basic
 dotnet_style_qualification_for_property = false:suggestion
-

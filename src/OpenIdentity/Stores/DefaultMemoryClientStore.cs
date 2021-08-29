@@ -6,7 +6,7 @@ using OpenIdentity.Abstractions.Stores;
 
 namespace OpenIdentity.Stores
 {
-    public class ClientMemoryStore : IClientStore
+    public class DefaultMemoryClientStore : IClientStore
     {
         internal static List<Client> _store = new List<Client>();
 
@@ -18,6 +18,11 @@ namespace OpenIdentity.Stores
         }
 
         public Task<Client> FindByIdAsync(string id, CancellationToken cancellationToken = default)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IEnumerable<Client>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             throw new System.NotImplementedException();
         }

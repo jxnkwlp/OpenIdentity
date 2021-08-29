@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using OpenIdentity.Abstractions;
 using OpenIdentity.Abstractions.Stores;
@@ -7,7 +8,7 @@ namespace OpenIdentity
 {
     public class OpenIdentityOptionsBuilder
     {
-        ClientMemoryStore _clientStore = new ClientMemoryStore();
+        private readonly DefaultMemoryClientStore _clientStore = new DefaultMemoryClientStore();
 
         public IServiceCollection ServiceCollection { get; }
 
@@ -18,7 +19,7 @@ namespace OpenIdentity
 
         public void RegisterClientStore<T>() where T : IClientStore
         {
-
+            throw new NotImplementedException();
         }
 
         public OpenIdentityOptionsBuilder AddClients(params Client[] clients)
@@ -26,11 +27,10 @@ namespace OpenIdentity
             // TODO , ClientMemoryStore.AddClient();
             //
 
-
-            return this;
+            throw new NotImplementedException();
         }
 
-        public   OpenIdentityOptionsBuilder AddClientStore<T>( ) where T : class, IClientStore, new()
+        public OpenIdentityOptionsBuilder AddClientStore<T>() where T : class, IClientStore, new()
         {
             ServiceCollection.AddTransient<IClientStore, T>();
 
@@ -39,7 +39,7 @@ namespace OpenIdentity
 
         private void ReplaceService<TService>()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
