@@ -22,9 +22,7 @@ namespace OpenIdentity
             UserInfo,
             Revocation
         };
-
-
-
+         
     }
 
     public class GrandTypes

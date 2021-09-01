@@ -1,80 +1,45 @@
-using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using OpenIdentity.Abstractions.Stores;
-using System.Linq;
-using OpenIdentity.Managers;
-using JWT.Algorithms;
-using JWT;
-using System.Collections.Generic;
-using JWT.Serializers;
+using OpenIdentity.Endpoints.Results;
 using OpenIdentity.Services;
-using OpenIdentity.Models;
+using OpenIdentity.Validation;
 
 namespace OpenIdentity.Endpoints
 {
-    public class TokenEndpoint : IRouteEndpointHandler
+    public class TokenEndpoint : IEndpointHandler
     {
-        private readonly ILogger<AuthorizationEndpoint> _logger;
-        private readonly IClientStore _clientStore;
-        private readonly TokenEndpointManager _tokenEndpointManager;
-        private readonly IUserService _userService;
+        private readonly ILogger<TokenEndpoint> _logger;
+        private readonly IClientValidator _clientValidator;
+        private readonly ITokenRequestService _tokenRequestService;
+        private readonly IJsonSerializer _jsonSerializer;
 
-        public TokenEndpoint(ILogger<AuthorizationEndpoint> logger, IClientStore clientStore, TokenEndpointManager tokenEndpointManager, IUserService userService)
+        public TokenEndpoint(ILogger<TokenEndpoint> logger, IClientValidator clientValidator, ITokenRequestService tokenRequestService, IJsonSerializer jsonSerializer)
         {
             _logger = logger;
-            _clientStore = clientStore;
-            _tokenEndpointManager = tokenEndpointManager;
-            _userService = userService;
+            _clientValidator = clientValidator;
+            _tokenRequestService = tokenRequestService;
+            _jsonSerializer = jsonSerializer;
         }
 
-        public async Task<RouteEndpointHandleResponse> HandleAsync(RouteEndpointHandleRequest request)
+        public async Task<IEndpointHandleResult> HandleAsync(EndpointHandleContext context)
         {
-            // validation
+            _logger.LogDebug("Starting token request.");
 
-            if (await _tokenEndpointManager.RequestMethodValidation(request)
-                || await _tokenEndpointManager.RequestParamsValidation(request))
+            var clientValidationResult = await _clientValidator.ValidateAsync(context.HttpContext);
+
+            if (!clientValidationResult.Success)
             {
-                return new RouteEndpointHandleResponse {
-                    StatusCode = 400,
-                    Json = "{\"error\", \"invalid_request\"}"
-                };
+                return new TokenEndpointErrorResult(_jsonSerializer, clientValidationResult);
             }
 
-            request.Query.TryGetValue("grant_type", out var grantType);
-            request.Query.TryGetValue("username", out var username);
-            request.Query.TryGetValue("password", out var password);
-            request.Query.TryGetValue("client_id", out var clientId);
+            var tokenResult = await _tokenRequestService.RequestAsync(context.HttpContext, clientValidationResult);
 
-            var tokenRequest = new TokenRequest();
-
-            // check flow
-            if (grantType == GrandTypes.Password)
+            if (!tokenResult.Success)
             {
-                UserVerifyRequest userVerifyRequest = new UserVerifyRequest() { ClientId = clientId };
-
-                if (!await _userService.VerifyAsync(username,password, userVerifyRequest))
-                {
-                    return new RouteEndpointHandleResponse {
-                        StatusCode = 403,
-                        Json = "{\"error\" : \"client not found\"}"
-                    };
-                }
-
-                //TODO 生成token
-            }else if (tokenRequest.GrandType == GrandTypes.AuthorizationCode)
-            {
-                
+                return new TokenEndpointErrorResult(_jsonSerializer, clientValidationResult);
             }
 
-            // response
-
-            throw new NotImplementedException();
+            return new TokenEndpointResult(_jsonSerializer, clientValidationResult, tokenResult);
         }
-    }
-
-    public class TokenRequest
-    {
-        public string GrandType { get; set; }
     }
 }

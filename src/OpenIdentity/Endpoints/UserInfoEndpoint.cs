@@ -3,7 +3,7 @@
 
 //namespace OpenIdentity.Endpoints
 //{
-//    public class DiscoveryEndpoint : IEndpointHandler
+//    public class UserInfoEndpoint : IEndpointHandler
 //    {
 //        public Task HandleAsync(EndpointHandleContext context)
 //        {

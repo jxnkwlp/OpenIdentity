@@ -1,12 +1,11 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using OpenIdentity.Abstractions;
 using OpenIdentity.Abstractions.Stores;
 using OpenIdentity.Endpoints;
-using OpenIdentity.Managers;
 using OpenIdentity.Services;
 using OpenIdentity.Stores;
+using OpenIdentity.Validation;
 
 namespace OpenIdentity
 {
@@ -16,25 +15,42 @@ namespace OpenIdentity
         {
             var builder = new OpenIdentityOptionsBuilder(services);
 
+            // options
             var options = new OpenIdentityOptions();
             optionBuilder?.Invoke(options);
 
             services.TryAddSingleton(options);
 
+            // core
             services.AddOpenIdentityCore();
-
-            builder.AddDefaultClientStore();
 
             return builder;
         }
 
         private static void AddOpenIdentityCore(this IServiceCollection services)
         {
+            //services.AddTransient<IClientStore, DefaultMemoryClientStore>();
+            //services.AddTransient<IRouteEndpointHandler, AuthorizationEndpoint>();
+            //services.AddTransient<IRouteEndpointHandler, TokenEndpoint>();
+            //services.AddSingleton<TokenEndpointManager>();
+            //services.AddTransient<IUserService, UserService>();
+
+            // endpoints
+            services.AddTransient<TokenEndpoint>();
+
+
+            // stores 
             services.AddTransient<IClientStore, DefaultMemoryClientStore>();
-            services.AddTransient<IRouteEndpointHandler, AuthorizationEndpoint>();
-            services.AddTransient<IRouteEndpointHandler, TokenEndpoint>();
-            services.AddSingleton<TokenEndpointManager>();
-            services.AddTransient<IUserService, UserService>();
+
+
+            // services
+            services.AddTransient<IJsonSerializer, DefaultJsonSerializer>();
+            services.AddTransient<ITokenRequestService, TokenRequestService>();
+
+
+            // validations
+            services.AddTransient<IClientValidator, ClientValidator>();
+
         }
     }
 }

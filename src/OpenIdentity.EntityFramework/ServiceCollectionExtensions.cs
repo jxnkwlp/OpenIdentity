@@ -1,4 +1,3 @@
-using OpenIdentity.Abstractions.Stores;
 using OpenIdentity.EntityFramework;
 using OpenIdentity.EntityFramework.Stores;
 

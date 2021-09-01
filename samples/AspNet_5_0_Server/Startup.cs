@@ -1,12 +1,9 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenIdentity;
-using OpenIdentity.Abstractions;
 
 namespace AspNet_5_0_Server
 {
@@ -63,9 +60,9 @@ namespace AspNet_5_0_Server
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                 
+
             });
-             
+
         }
     }
 }

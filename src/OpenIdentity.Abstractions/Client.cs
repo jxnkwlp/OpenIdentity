@@ -5,7 +5,7 @@ namespace OpenIdentity.Abstractions
 {
     public class Client
     {
-        public string ClientId { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
         public bool Enabled { get; set; }
@@ -18,6 +18,7 @@ namespace OpenIdentity.Abstractions
         public Uri[] RedirectUris { get; set; }
 
         public ClientSecret[] ClientSecrets { get; set; }
+        public bool RequireSecret { get; set; }
 
         public Dictionary<string, object> Properties { get; set; }
 

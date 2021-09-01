@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OpenIdentity.Models
 {
-    public class UserVerifyRequest
+    public class Token
     {
-        public string ClientId { get; set; }
+        
     }
 }

@@ -1,9 +1,6 @@
 namespace OpenIdentity.Abstractions
 {
-    public class ClientSecret
+    public class ClientSecret : Secret
     {
-        public string ClientId { get; set; }
-
-        public string Secret { get; set; }
     }
 }

@@ -7,29 +7,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JWT" Version="8.2.3" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\OpenIdentity.Abstractions\OpenIdentity.Abstractions.csproj" />
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+
+    <ItemGroup  Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'net5.0' ">
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
-    </ItemGroup>
-
-    <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' Or '$(TargetFramework)' == 'netcoreapp3.1' ">
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Models\" />
     </ItemGroup>
 
 </Project>

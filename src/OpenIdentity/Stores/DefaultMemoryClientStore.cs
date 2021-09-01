@@ -14,7 +14,7 @@ namespace OpenIdentity.Stores
         public void AddClient(Client client)
         {
             // TODO Check client id exists.
-            if (_store.Where(s=>s.ClientId.Equals(client.ClientId, System.StringComparison.OrdinalIgnoreCase)
+            if (_store.Where(s=>s.Id.Equals(client.Id, System.StringComparison.OrdinalIgnoreCase)
             || s.Name.Equals(client.Name, System.StringComparison.OrdinalIgnoreCase)).Count() != 0)
             {
                 throw new System.Exception("add duplicate client id or name");
@@ -24,7 +24,7 @@ namespace OpenIdentity.Stores
 
         public Task<Client> FindByIdAsync(string id, CancellationToken cancellationToken = default)
         {
-            return Task.FromResult(_store.FirstOrDefault(s => s.ClientId == id));
+            return Task.FromResult(_store.FirstOrDefault(s => s.Id == id));
         }
 
         public Task<IEnumerable<Client>> GetAllAsync(CancellationToken cancellationToken = default)

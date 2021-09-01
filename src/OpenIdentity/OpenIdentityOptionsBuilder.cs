@@ -1,9 +1,9 @@
-using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using OpenIdentity.Abstractions;
 using OpenIdentity.Abstractions.Stores;
+using OpenIdentity.Services;
 using OpenIdentity.Stores;
+using OpenIdentity.Validation;
 
 namespace OpenIdentity
 {
@@ -11,42 +11,30 @@ namespace OpenIdentity
     {
         private readonly DefaultMemoryClientStore _clientStore = new DefaultMemoryClientStore();
 
-        public IServiceCollection ServiceCollection { get; }
+        public IServiceCollection Services { get; }
 
-        public OpenIdentityOptionsBuilder(IServiceCollection serviceCollection)
+        public OpenIdentityOptionsBuilder(IServiceCollection services)
         {
-            ServiceCollection = serviceCollection;
+            Services = services;
         }
 
-        public void AddClients(params Client[] clients)
+        public OpenIdentityOptionsBuilder AddClientStore<T>() where T : class, IClientStore
         {
-            // TODO , ClientMemoryStore.AddClient();
-            //
-            foreach (var client in clients)
-                _clientStore.AddClient(client);
-        }
-
-        public OpenIdentityOptionsBuilder AddDefaultClientStore()
-        {
-            ServiceCollection.AddTransient<IClientStore, DefaultMemoryClientStore>();
-
+            Services.Replace(ServiceDescriptor.Transient<IClientStore, T>());
             return this;
         }
 
-        public OpenIdentityOptionsBuilder AddClientStore<T>() where T : IClientStore
+        public OpenIdentityOptionsBuilder AddClientValidator<T>() where T : class, IClientValidator
         {
-            var descriptor = new ServiceDescriptor(typeof(IClientStore), typeof(T), ServiceLifetime.Transient);
-            ServiceCollection.Replace(descriptor);
+            Services.Replace(ServiceDescriptor.Transient<IClientValidator, T>());
             return this;
         }
 
-        public OpenIdentityOptionsBuilder ReplaceService<TService, NewImplService>(ServiceLifetime lifetime = ServiceLifetime.Transient)
+        public OpenIdentityOptionsBuilder AddJsonSerializer<T>() where T : class, IJsonSerializer
         {
-            var descriptor = new ServiceDescriptor(typeof(TService), typeof(NewImplService), lifetime);
-
-            ServiceCollection.Replace(descriptor);
-
+            Services.Replace(ServiceDescriptor.Transient<IJsonSerializer, T>());
             return this;
         }
+
     }
 }
