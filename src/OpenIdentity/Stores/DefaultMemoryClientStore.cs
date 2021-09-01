@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using OpenIdentity.Abstractions;
 using OpenIdentity.Abstractions.Stores;
+using System.Linq;
 
 namespace OpenIdentity.Stores
 {
@@ -10,21 +11,25 @@ namespace OpenIdentity.Stores
     {
         internal static List<Client> _store = new List<Client>();
 
-        public static void AddClient(Client client)
+        public void AddClient(Client client)
         {
             // TODO Check client id exists.
-
+            if (_store.Where(s=>s.ClientId.Equals(client.ClientId, System.StringComparison.OrdinalIgnoreCase)
+            || s.Name.Equals(client.Name, System.StringComparison.OrdinalIgnoreCase)).Count() != 0)
+            {
+                throw new System.Exception("add duplicate client id or name");
+            }
             _store.Add(client);
         }
 
         public Task<Client> FindByIdAsync(string id, CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            return Task.FromResult(_store.FirstOrDefault(s => s.ClientId == id));
         }
 
         public Task<IEnumerable<Client>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            return Task.FromResult(_store.AsEnumerable());
         }
     }
 }

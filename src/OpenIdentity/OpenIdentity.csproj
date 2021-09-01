@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="JWT" Version="8.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\OpenIdentity.Abstractions\OpenIdentity.Abstractions.csproj" />
     </ItemGroup>
 

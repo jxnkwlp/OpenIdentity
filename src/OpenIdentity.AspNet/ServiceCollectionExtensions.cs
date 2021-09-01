@@ -1,7 +1,12 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using OpenIdentity.Abstractions;
+using OpenIdentity.Abstractions.Stores;
 using OpenIdentity.Endpoints;
+using OpenIdentity.Managers;
+using OpenIdentity.Services;
+using OpenIdentity.Stores;
 
 namespace OpenIdentity
 {
@@ -16,25 +21,20 @@ namespace OpenIdentity
 
             services.TryAddSingleton(options);
 
-            // core 
             services.AddOpenIdentityCore();
 
-            // extensions
-            // services.AddClientStore<ClientMemoryStore>();
+            builder.AddDefaultClientStore();
 
             return builder;
         }
 
         private static void AddOpenIdentityCore(this IServiceCollection services)
         {
-            services.AddTransient<AuthorizationEndpoint>();
-
+            services.AddTransient<IClientStore, DefaultMemoryClientStore>();
+            services.AddTransient<IRouteEndpointHandler, AuthorizationEndpoint>();
+            services.AddTransient<IRouteEndpointHandler, TokenEndpoint>();
+            services.AddSingleton<TokenEndpointManager>();
+            services.AddTransient<IUserService, UserService>();
         }
-
-    }
-
-    public static class OpenIdentityOptionsBuilderExtensions
-    {
-
     }
 }

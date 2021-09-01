@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using OpenIdentity.Abstractions;
 using OpenIdentity.Abstractions.Stores;
 using OpenIdentity.Stores;
@@ -17,29 +18,35 @@ namespace OpenIdentity
             ServiceCollection = serviceCollection;
         }
 
-        public void RegisterClientStore<T>() where T : IClientStore
-        {
-            throw new NotImplementedException();
-        }
-
-        public OpenIdentityOptionsBuilder AddClients(params Client[] clients)
+        public void AddClients(params Client[] clients)
         {
             // TODO , ClientMemoryStore.AddClient();
             //
-
-            throw new NotImplementedException();
+            foreach (var client in clients)
+                _clientStore.AddClient(client);
         }
 
-        public OpenIdentityOptionsBuilder AddClientStore<T>() where T : class, IClientStore, new()
+        public OpenIdentityOptionsBuilder AddDefaultClientStore()
         {
-            ServiceCollection.AddTransient<IClientStore, T>();
+            ServiceCollection.AddTransient<IClientStore, DefaultMemoryClientStore>();
 
             return this;
         }
 
-        private void ReplaceService<TService>()
+        public OpenIdentityOptionsBuilder AddClientStore<T>() where T : IClientStore
         {
-            throw new NotImplementedException();
+            var descriptor = new ServiceDescriptor(typeof(IClientStore), typeof(T), ServiceLifetime.Transient);
+            ServiceCollection.Replace(descriptor);
+            return this;
+        }
+
+        public OpenIdentityOptionsBuilder ReplaceService<TService, NewImplService>(ServiceLifetime lifetime = ServiceLifetime.Transient)
+        {
+            var descriptor = new ServiceDescriptor(typeof(TService), typeof(NewImplService), lifetime);
+
+            ServiceCollection.Replace(descriptor);
+
+            return this;
         }
     }
 }
