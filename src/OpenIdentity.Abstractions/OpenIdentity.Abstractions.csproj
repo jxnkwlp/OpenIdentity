@@ -6,7 +6,4 @@
         <RootNamespace>OpenIdentity</RootNamespace>
     </PropertyGroup>
 
-    <ItemGroup>
-    </ItemGroup>
-
 </Project>
