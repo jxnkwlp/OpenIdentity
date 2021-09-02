@@ -12,6 +12,7 @@ namespace OpenIdentity.Services
     {
         private readonly ILogger<TokenRequestService> _logger;
         private readonly IUserService _userService;
+        private readonly ITokenService _tokenService;
 
         public async Task<TokenRequestResult> RequestAsync(HttpContext httpContext, ClientValidationResult clientValidationResult)
         {
@@ -19,7 +20,8 @@ namespace OpenIdentity.Services
 
             if (grantType.IsNullOrEmpty())
             {
-                return new TokenRequestResult() {
+                return new TokenRequestResult()
+                {
                     ErrorDescription = "grant_type not found.",
                 };
             }
@@ -78,7 +80,8 @@ namespace OpenIdentity.Services
             var userName = forms.Get("username");
             var password = forms.Get("password");
 
-            var validateResult = await _userService.ValidateAsync(new UserValidationRequest() {
+            var validateResult = await _userService.ValidateAsync(new UserValidationRequest()
+            {
                 UserName = userName,
                 Password = password,
                 ClientId = client.Id,
@@ -86,7 +89,8 @@ namespace OpenIdentity.Services
 
             if (!validateResult.Success)
             {
-                return new TokenRequestResult() {
+                return new TokenRequestResult()
+                {
                     Error = validateResult.Error,
                     ErrorDescription = "invalid_username_or_password"
                 };
@@ -95,9 +99,22 @@ namespace OpenIdentity.Services
             {
                 // TODO
                 // token generate
-            }
+                var identityToken = await _tokenService.CreateIdentityTokenAsync(new TokenSource());
+                var accessToken = await _tokenService.CreateAccessTokenAsync(new TokenSource());
+                var refreshToken = await _tokenService.CreateRefreshTokenAsync(new TokenSource());
 
-            throw new NotImplementedException();
+                // TODO 
+                return new TokenRequestResult()
+                {
+                    Token = new TokenResponse()
+                    {
+                        ExpiresTime = DateTimeOffset.Now.AddMinutes(5),
+                        AccessToken = await _tokenService.CreateSecurityTokenAsync(accessToken),
+                        IdToken = await _tokenService.CreateSecurityTokenAsync(identityToken),
+                        RefreshToken = refreshToken,
+                    },
+                };
+            }
         }
     }
 }
