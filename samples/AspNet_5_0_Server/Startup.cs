@@ -1,9 +1,13 @@
+using System;
+using System.Security.Cryptography;
+using AspNet_5_0_Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenIdentity;
+using OpenIdentity.Abstractions;
 
 namespace AspNet_5_0_Server
 {
@@ -23,7 +27,18 @@ namespace AspNet_5_0_Server
 
             services.AddOpenIdentity(options =>
             {
-            })
+
+            }).AddUserService<UserService>()
+            .AddClient(new Client()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "my mvc",
+                ClientSecrets = new ClientSecret[]{ new ClientSecret() { Type = SecretType.Sha256, Value = "123456" } },
+                Enabled = true,
+                AllowedGrantTypes = new string[] { "password"},
+                AllowedScopes = new string[] { "api"},
+                
+            });
             // .AddClients(new Client(),new Client())
             // .AddDbContext<>()
             // .AddClientStore<>();
@@ -54,6 +69,8 @@ namespace AspNet_5_0_Server
             app.UseOpenIdentity();
 
             app.UseAuthorization();
+
+            
 
             app.UseEndpoints(endpoints =>
             {

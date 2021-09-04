@@ -14,6 +14,13 @@ namespace OpenIdentity.Services
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
 
+        public TokenRequestService(ILogger<TokenRequestService> logger, IUserService userService, ITokenService tokenService)
+        {
+            _logger = logger;
+            _userService = userService;
+            _tokenService = tokenService;
+        }
+
         public async Task<TokenRequestResult> RequestAsync(HttpContext httpContext, ClientValidationResult clientValidationResult)
         {
             var grantType = httpContext.GetGrantType();

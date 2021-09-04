@@ -9,13 +9,17 @@ namespace OpenIdentity.Extensions
         {
             var request = context.Request;
 
-            if (request.Query.TryGetValue(key, out var value))
-            {
-                return value.ToString();
-            }
+            if (request.Query.TryGetValue(key, out var queryValue))
+                return queryValue.ToString();
+
+            if (request.Headers.TryGetValue(key, out var headerValue))
+                return headerValue.ToString();
+
+            if (request.Form.TryGetValue(key, out var formValue))
+                return formValue.ToString();
 
             // TODO
-            throw new NotImplementedException();
+            return null;
         }
 
         public static string GetClientId(this HttpContext context)

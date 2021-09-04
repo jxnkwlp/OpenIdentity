@@ -46,6 +46,7 @@ namespace OpenIdentity
             // services
             services.AddTransient<IJsonSerializer, DefaultJsonSerializer>();
             services.AddTransient<ITokenRequestService, TokenRequestService>();
+            services.AddTransient<ITokenService, TokenService>();
 
 
             // validations
